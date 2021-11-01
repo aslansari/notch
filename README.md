@@ -11,3 +11,15 @@ Who needs to sign-in to check what's missing on their fridge; i, sure don't.
 - Kotlin
 - Jetpack Compose
 - Room
+
+## Configurations
+
+Hook scripts are version controlled for this project. Navigate to the project directory and config git hook path with the following command
+
+```bash
+  git config --local core.hooksPath .githooks/ 
+```
+
+## Feedback
+
+If you have any feedback, please reach out to me at [aslansari.dev@gmail.com](mailto:aslansari.dev@gmail.com)
