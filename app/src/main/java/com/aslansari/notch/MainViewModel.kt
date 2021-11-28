@@ -6,13 +6,14 @@ import kotlinx.coroutines.flow.StateFlow
 
 class MainViewModel : ViewModel() {
 
-    private val _drawerShouldBeOpened = MutableStateFlow(false)
-    val drawerShouldBeOpened: StateFlow<Boolean> = _drawerShouldBeOpened
+    private val _inputFieldShouldShown = MutableStateFlow(false)
+    val inputFieldShouldShown: StateFlow<Boolean> = _inputFieldShouldShown
 
-    fun openDrawer() {
-        _drawerShouldBeOpened.value = true
+    fun pushFloatingActionButton() {
+        _inputFieldShouldShown.value = true
     }
-    fun resetOpenDrawerAction() {
-        _drawerShouldBeOpened.value = false
+
+    fun itemAdded() {
+        _inputFieldShouldShown.value = false
     }
 }

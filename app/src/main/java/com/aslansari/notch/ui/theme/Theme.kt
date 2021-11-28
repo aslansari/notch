@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 private val LightColorPalette = ColorScheme(
     primary = Color(0xFF6750A4),
     onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFFEADDFF),
+    primaryContainer = Color(0xFFD0B3FF),
     onPrimaryContainer= Color(0xFF21005D),
     inversePrimary= Color(0xFF6750A4),
     secondary= Color(0xFF625B71),

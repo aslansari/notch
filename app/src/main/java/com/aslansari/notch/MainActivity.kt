@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
@@ -16,6 +17,7 @@ import com.aslansari.notch.databinding.ContentMainBinding
 import com.aslansari.notch.ui.LocalBackPressedDispatcher
 import com.aslansari.notch.ui.theme.NotchTheme
 import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.navigationBarsPadding
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,14 +38,17 @@ class MainActivity : AppCompatActivity() {
                     LocalBackPressedDispatcher provides onBackPressedDispatcher,
                 ) {
                     NotchTheme {
-                        var inputState by remember { mutableStateOf(false) }
+                        val inputFieldShown by viewModel.inputFieldShouldShown.collectAsState()
                         Scaffold(
-                            // TODO: 28.11.2021 add floating action button for showing input field
-//                            floatingActionButton = {
-//                                if (!inputState) {
-//                                    FAB(onClick = { inputState = true })
-//                                }
-//                            }
+                            floatingActionButton = {
+                                if (!inputFieldShown) {
+                                    FAB(
+                                        onClick = {
+                                            viewModel.pushFloatingActionButton()
+                                        }
+                                    )
+                                }
+                            }
                         ) {
                             AndroidViewBinding(ContentMainBinding::inflate)
                         }

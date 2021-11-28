@@ -26,12 +26,25 @@ import com.aslansari.notch.Item
 import com.aslansari.notch.ui.CartItemScreen
 import com.google.accompanist.insets.*
 
+@Preview
+@Composable
+@ExperimentalMaterial3Api
+fun CartPreview() {
+    Cart(
+        modifier = Modifier,
+        itemList = mockList(),
+        onMessageSent = {},
+        showUserInput = true
+    )
+}
+
 @ExperimentalMaterial3Api
 @Composable
 fun Cart(
     modifier: Modifier,
     itemList :MutableList<Item>,
     onMessageSent: (String) -> Unit,
+    showUserInput: Boolean
 ) {
     val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
     val scrollState = rememberLazyListState()
@@ -48,12 +61,14 @@ fun Cart(
                     modifier = Modifier.weight(1f),
                     scrollState = scrollState
                 )
-                UserInput(
-                    onMessageSent = {
-                        onMessageSent(it)
-                    },
-                    modifier = Modifier.navigationBarsWithImePadding()
-                )
+                if (showUserInput) {
+                    UserInput(
+                        onMessageSent = {
+                            onMessageSent(it)
+                        },
+                        modifier = Modifier.navigationBarsWithImePadding()
+                    )
+                }
             }
         }
     }
@@ -62,18 +77,13 @@ fun Cart(
 @Composable
 fun FAB(onClick: () -> Unit) {
     FloatingActionButton(
+        modifier = Modifier.navigationBarsPadding(),
         onClick = onClick,
         contentColor = Color.White,
         shape = RoundedCornerShape(20.dp)
     ){
         Icon(Icons.Filled.Add,"")
     }
-}
-
-@Preview
-@Composable
-fun ShoppingListPreview() {
-    ShoppingList(itemList = mockList(), scrollState = LazyListState(), modifier = Modifier)
 }
 
 @Composable

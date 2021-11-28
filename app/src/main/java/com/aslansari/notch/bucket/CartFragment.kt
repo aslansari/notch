@@ -53,13 +53,16 @@ class CartFragment : Fragment() {
                 LocalWindowInsets provides windowInsets,
             ) {
                 NotchTheme {
+                    val inputShown by activityViewModel.inputFieldShouldShown.collectAsState()
                     val itemList :MutableList<Item> = remember { mutableStateListOf() }
                     Cart(
                         modifier = Modifier.navigationBarsPadding(bottom = false),
                         itemList = itemList,
                         onMessageSent = {
                             itemList.add(Item(it, false))
-                        }
+                            activityViewModel.itemAdded()
+                        },
+                        showUserInput = inputShown
                     )
                 }
             }
