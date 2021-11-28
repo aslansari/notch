@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Notch</string>
+
+    <string name="text_field_hint">Enter Item…</string>
+    <string name="text_button_enter">Enter</string>
+
 </resources>
