@@ -10,19 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.aslansari.notch.Item
 import com.aslansari.notch.MainViewModel
+import com.aslansari.notch.bucket.persistence.Item
 import com.aslansari.notch.ui.LocalBackPressedDispatcher
 import com.aslansari.notch.ui.theme.NotchTheme
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.ViewWindowInsetObserver
 import com.google.accompanist.insets.navigationBarsPadding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CartFragment : Fragment() {
 
     private val activityViewModel: MainViewModel by activityViewModels()

@@ -65,17 +65,6 @@ fun CartItem(name: String, onCardClicked: () -> Unit, itemState: ItemState) {
             )
         }
     }
-//    Card(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .heightIn(min = 80.dp)
-//            .clickable { onCardClicked() },
-//        backgroundColor = MaterialTheme.colors.surface,
-//        elevation = 1.dp,
-//        shape = RoundedCornerShape(4.dp)
-//    ) {
-//
-//    }
 }
 
 @Preview
