@@ -11,6 +11,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.aslansari.notch.MainViewModel
+import com.aslansari.notch.NotchApp
 import com.aslansari.notch.bucket.persistence.Item
 import com.aslansari.notch.ui.LocalBackPressedDispatcher
 import com.aslansari.notch.ui.theme.NotchTheme
@@ -21,6 +22,9 @@ import com.google.accompanist.insets.navigationBarsPadding
 class CartFragment : Fragment() {
 
     private val activityViewModel: MainViewModel by activityViewModels()
+    private val cartViewModel: CartViewModel by activityViewModels(factoryProducer = {
+        CartViewModelFactory((activity?.application as NotchApp).repository)
+    })
 
     @ExperimentalMaterial3Api
     override fun onCreateView(
@@ -49,12 +53,12 @@ class CartFragment : Fragment() {
             ) {
                 NotchTheme {
                     val inputShown by activityViewModel.inputFieldShouldShown.collectAsState()
-                    val itemList :MutableList<Item> = remember { mutableStateListOf() }
+                    val itemList :List<Item> by cartViewModel.itemListFlow.collectAsState()
                     Cart(
                         modifier = Modifier.navigationBarsPadding(bottom = false),
-                        itemList = itemList,
+                        itemList = itemList.toMutableList(),
                         onMessageSent = {
-                            itemList.add(Item(it, false))
+                            cartViewModel.addItem(Item(it, false))
                             activityViewModel.itemAdded()
                         },
                         showUserInput = inputShown
